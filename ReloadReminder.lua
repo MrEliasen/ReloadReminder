@@ -13,6 +13,7 @@ ReloadReminder_Settings = {
 -- [[ Addon main ui]]
 ReloadReminder = CreateFrame("Frame")
 ReloadReminder.name = "ReloadReminder"
+ReloadReminder.timerIsRunning = false;
 
 --[[ Startup ]]--
 function ReloadReminder:Startup()
@@ -35,6 +36,13 @@ function ReloadReminder:ADDON_LOADED()
 		print("|cFFFF0000RELOAD REMINDER:|r Will remind you to /reload in " .. ReloadReminder_Settings.alert_frequency .. " minute(s). Change how often in the settings.")
 	end
 
+	self:createTimer();
+end
+
+function ReloadReminder:createTimer()
+    if (self.timerIsRunning) then return; end
+	self.timerIsRunning = true;
+
 	-- initiate timer, uses seconds
 	C_Timer.NewTicker(ReloadReminder_Settings.alert_frequency * 60, function()
 		if ReloadReminder_Settings.sound_alerts then
@@ -52,10 +60,8 @@ function ReloadReminder:SoundAlert()
 end
 
 function ReloadReminder:ChatAlert()
-	print("|cFFFF0000RELOAD REMINDER:|r It's been " .. ReloadReminder_Settings.alert_frequency .." minute(s) since last /reload; Best do it now to save your progress!")
-	print("|cFFFF0000RELOAD REMINDER:|r It's been " .. ReloadReminder_Settings.alert_frequency .." minute(s) since last /reload; Best do it now to save your progress!")
-	print("|cFFFF0000RELOAD REMINDER:|r It's been " .. ReloadReminder_Settings.alert_frequency .." minute(s) since last /reload; Best do it now to save your progress!")
-	print("|cFFFF0000RELOAD REMINDER:|r It's been " .. ReloadReminder_Settings.alert_frequency .." minute(s) since last /reload; Best do it now to save your progress!")
+	print("|cFFFF0000RELOAD REMINDER:|r It's been " .. ReloadReminder_Settings.alert_frequency .." minute(s) since last /reload")
+	print("|cFFFF0000RELOAD REMINDER:|r /reload now to save your progress!")
 end
 
 function ReloadReminder:ShowOptions()
