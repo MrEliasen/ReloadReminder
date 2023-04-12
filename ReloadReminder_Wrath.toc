@@ -1,0 +1,12 @@
+## Interface: 30401
+## Version: 1.2.0
+## Title: ReloadReminder
+## Notes: Made for Classic Hardcore / Road to Ragnaros
+## Author: SirMrE.com
+## X-License: All Rights Reserved
+## X-Category: Leveling
+## SavedVariables: ReloadReminder_Settings
+
+embeds.xml
+
+ReloadReminder.lua
